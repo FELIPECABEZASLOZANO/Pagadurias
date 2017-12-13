@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_codigoEmpleado}" for="codigoEmpleado" />
+                    <h:inputText id="codigoEmpleado" value="#{empleadoController.selected.codigoEmpleado}" title="#{bundle.CreateEmpleadoTitle_codigoEmpleado}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_codigoEmpleado}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_cedula}" for="cedula" />
+                    <h:inputText id="cedula" value="#{empleadoController.selected.cedula}" title="#{bundle.CreateEmpleadoTitle_cedula}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_nombreEmpleado}" for="nombreEmpleado" />
+                    <h:inputText id="nombreEmpleado" value="#{empleadoController.selected.nombreEmpleado}" title="#{bundle.CreateEmpleadoTitle_nombreEmpleado}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_apellidoEmpleado}" for="apellidoEmpleado" />
+                    <h:inputText id="apellidoEmpleado" value="#{empleadoController.selected.apellidoEmpleado}" title="#{bundle.CreateEmpleadoTitle_apellidoEmpleado}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_telefonoEmpleado}" for="telefonoEmpleado" />
+                    <h:inputText id="telefonoEmpleado" value="#{empleadoController.selected.telefonoEmpleado}" title="#{bundle.CreateEmpleadoTitle_telefonoEmpleado}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_direccionEmpleado}" for="direccionEmpleado" />
+                    <h:inputText id="direccionEmpleado" value="#{empleadoController.selected.direccionEmpleado}" title="#{bundle.CreateEmpleadoTitle_direccionEmpleado}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empleadoController.create}" value="#{bundle.CreateEmpleadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.CreateEmpleadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEmpleadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

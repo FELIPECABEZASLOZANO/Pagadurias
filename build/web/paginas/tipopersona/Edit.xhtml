@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipopersonaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipopersonaLabel_idTipo}" for="idTipo" />
+                    <h:inputText id="idTipo" value="#{tipopersonaController.selected.idTipo}" title="#{bundle.EditTipopersonaTitle_idTipo}" required="true" requiredMessage="#{bundle.EditTipopersonaRequiredMessage_idTipo}"/>
+                    <h:outputLabel value="#{bundle.EditTipopersonaLabel_nombreTipo}" for="nombreTipo" />
+                    <h:inputText id="nombreTipo" value="#{tipopersonaController.selected.nombreTipo}" title="#{bundle.EditTipopersonaTitle_nombreTipo}" />
+                    <h:outputLabel value="#{bundle.EditTipopersonaLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{tipopersonaController.selected.descripcion}" title="#{bundle.EditTipopersonaTitle_descripcion}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tipopersonaController.update}" value="#{bundle.EditTipopersonaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipopersonaViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipopersonaController.prepareList}" value="#{bundle.EditTipopersonaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipopersonaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

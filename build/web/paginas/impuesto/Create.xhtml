@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateImpuestoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateImpuestoLabel_idImpuesto}" for="idImpuesto" />
+                    <h:inputText id="idImpuesto" value="#{impuestoController.selected.idImpuesto}" title="#{bundle.CreateImpuestoTitle_idImpuesto}" required="true" requiredMessage="#{bundle.CreateImpuestoRequiredMessage_idImpuesto}"/>
+                    <h:outputLabel value="#{bundle.CreateImpuestoLabel_nombreImpuesto}" for="nombreImpuesto" />
+                    <h:inputText id="nombreImpuesto" value="#{impuestoController.selected.nombreImpuesto}" title="#{bundle.CreateImpuestoTitle_nombreImpuesto}" />
+                    <h:outputLabel value="#{bundle.CreateImpuestoLabel_descripcionImpuesto}" for="descripcionImpuesto" />
+                    <h:inputText id="descripcionImpuesto" value="#{impuestoController.selected.descripcionImpuesto}" title="#{bundle.CreateImpuestoTitle_descripcionImpuesto}" />
+                    <h:outputLabel value="#{bundle.CreateImpuestoLabel_valorImpuesto}" for="valorImpuesto" />
+                    <h:inputText id="valorImpuesto" value="#{impuestoController.selected.valorImpuesto}" title="#{bundle.CreateImpuestoTitle_valorImpuesto}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{impuestoController.create}" value="#{bundle.CreateImpuestoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{impuestoController.prepareList}" value="#{bundle.CreateImpuestoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateImpuestoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetalleEmpty}" rendered="#{detalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detalleController.items.rowCount > 0}">
+                    <h:outputText value="#{detalleController.pagination.pageFirstItem + 1}..#{detalleController.pagination.pageLastItem + 1}/#{detalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detalleController.previous}" value="#{bundle.Previous} #{detalleController.pagination.pageSize}" rendered="#{detalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detalleController.next}" value="#{bundle.Next} #{detalleController.pagination.pageSize}" rendered="#{detalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleTitle_idDetalle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDetalle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleTitle_valor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleTitle_idImpuesto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idImpuesto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetalleTitle_idFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFactura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detalleController.prepareView}" value="#{bundle.ListDetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detalleController.prepareEdit}" value="#{bundle.ListDetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detalleController.destroy}" value="#{bundle.ListDetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detalleController.prepareCreate}" value="#{bundle.ListDetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
